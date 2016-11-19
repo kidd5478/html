@@ -12,7 +12,7 @@ $s3 = new Aws\S3\S3Client([
 
 
 // have to hard code this here because index.php doesn't exist
-$_SESSION['email'] = "hajek@iit.edu";
+$_SESSION['email'] = "mkidd@iit.edu";
 echo "\n" . $_SESSION['email'] ."\n";
 
 // Retrieve the POSTED file information (location, name, etc, etc)
@@ -33,7 +33,7 @@ print_r($_FILES);
 // Upload file to S3 bucket
 $s3result = $s3->putObject([
     'ACL' => 'public-read',
-     'Bucket' => 'raw-jrh',
+     'Bucket' => 'raw-mak',
       'Key' =>  basename($_FILES['userfile']['name']),
       'SourceFile' => $uploadfile 
 
@@ -114,20 +114,4 @@ $link->close();
 
 
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
