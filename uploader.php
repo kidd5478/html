@@ -1,3 +1,13 @@
+<html>
+<head><title>Gallery Page</title>
+</head>
+<body><br/>
+Uploader PHP<br/>
+<a href="upload.php"> Upload </a>
+<br/>
+</body>
+</html>
+
 <?php
 
 session_start();
@@ -12,8 +22,8 @@ $s3 = new Aws\S3\S3Client([
 
 
 // have to hard code this here because index.php doesn't exist
-$_SESSION['email'] = "mkidd@iit.edu";
-echo "\n" . $_SESSION['email'] ."\n";
+$_SESSION['user-id'] = "mkidd";
+echo "\n" . $_SESSION['user-id'] ."\n";
 
 // Retrieve the POSTED file information (location, name, etc, etc)
 
@@ -50,14 +60,14 @@ $rdsclient = new Aws\Rds\RdsClient([
 
 
 $rdsresult = $rdsclient->describeDBInstances([
-    'DBInstanceIdentifier' => 'inclass-544'
+    'DBInstanceIdentifier' => 'mydbinstancefixed'
 ]);
 
 
 $endpoint = $rdsresult['DBInstances'][0]['Endpoint']['Address'];
 echo $endpoint . "\n";
 
-$link = mysqli_connect($endpoint,"controller","ilovebunnies","inclass") or die("Error " . mysqli_error($link));
+$link = mysqli_connect($endpoint,"myawsuser","myuserpassword","mydbinstancefixed") or die("Error " . mysqli_error($link));
 
 /* check connection */
 if (mysqli_connect_errno()) {
@@ -69,17 +79,17 @@ if (mysqli_connect_errno()) {
 
 // code to insert new record
 /* Prepared statement, stage 1: prepare */
-if (!($stmt = $link->prepare("INSERT INTO items(id, email, phone, filename, s3rawurl, s3finishedurl, status, issubscribed) VALUES (NULL,?,?,?,?,?,?,?)"))) {
+if (!($stmt = $link->prepare("INSERT INTO items(id, username, phone, filename, s3rawurl, s3finishedurl, status, reciept) VALUES (NULL,?,?,?,?,?,?,?)"))) {
     echo "Prepare failed: (" . $stmt->errno . ") " . $stmt->error;
 }
-$email=$_SESSION['email'];
+$username=$_SESSION['user-id'];
 $phone='1234567';
 $finishedurl=' ';
 $status=0;
 $issubscribed=0;
 $receipt=md5($url);
 // prepared statements will not accept literals (pass by reference) in bind_params, you need to declare variables
-$stmt->bind_param("sssssii",$email,$phone,$receipt,$url,$finishedurl,$status,$issubscribed);
+$stmt->bind_param("ssssii",$username,$phone,$s3rawurl,$s3finsihedurl,$status,$reciept);
 
 if (!$stmt->execute()) {
     echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
