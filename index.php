@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-echo "Hello World";
+echo "Hello World \n";
 // Include the SDK using the Composer autoloader
 require 'vendor/autoload.php';
 $s3 = new Aws\S3\S3Client([
@@ -17,7 +17,7 @@ foreach ($result['Buckets'] as $bucket) {
 $array = $result->toArray();
 ?>
 
-<head><title>Hello app</title>
+<head><title>Michael Kidd Website</title>
 </head>
 <body>
 
@@ -26,11 +26,11 @@ $array = $result->toArray();
     <!-- MAX_FILE_SIZE must precede the file input field -->
     <input type="hidden" name="MAX_FILE_SIZE" value="3000000" />
     <!-- Name of input element determines name in $_FILES array -->
-    Send this file: <input name="userfile" type="file" /><br />
+    
 Enter Username of user: <input type="text" name="username"><br />
-Enter password of user: <input type="password" name="password">
+Enter password of user: <input type="password" name="password"><br />
 
-<input type="submit" value="Send File" />
+<input type="submit" value="Log in" />
 </form>
 <hr />
 
