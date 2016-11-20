@@ -60,17 +60,19 @@ if (mysqli_connect_errno()) {
 
 // code to insert new record
 /* Prepared statement, stage 1: prepare */
-if (!($stmt = $link->prepare("INSERT INTO items(id, email, phone, filename, s3rawurl, s3finishedurl, status, issubscribed) VALUES (NULL,?,?,?,?,?,?,?)"))) {
-    echo "Prepare failed: (" . $stmt->errno . ") " . $stmt->error;
+if (!($stmt = $link->prepare("INSERT INTO items (id, email, phone, s3rawurl, s3finishedurl, status,receipt) VALUES (NULL,?,?,?,?,?,?)"))) {
+    echo "1": (" . $stmt->errno . ") " . $stmt->error;
 }
+$id='0';
 $email=$_SESSION['email'];
 $phone='1234567';
-$finishedurl=' ';
+$s3rawurl= ' ';
+$s3finishedurl=' ';
 $status=0;
-$issubscribed=0;
 $receipt=md5($url);
 // prepared statements will not accept literals (pass by reference) in bind_params, you need to declare variables
-$stmt->bind_param("sssssii",$email,$phone,$receipt,$url,$finishedurl,$status,$issubscribed);
+$stmt->bind_param("ssssii",$email,$phone,$s3rawurl,$s3finsihedurl,$status,$receipt);
+
 
 if (!$stmt->execute()) {
     echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
