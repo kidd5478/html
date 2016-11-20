@@ -27,7 +27,7 @@ $array = $result->toArray();
     <input type="hidden" name="MAX_FILE_SIZE" value="3000000" />
     <!-- Name of input element determines name in $_FILES array -->
     
-Enter Username of user: <input type="text" name="user-id"><br />
+Enter Username of user: <input type="email" name="email"><br />
 Enter password of user: <input type="password" name="password"><br />
 
 <input type="submit" value="Log in" />
