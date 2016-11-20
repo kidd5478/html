@@ -1,5 +1,5 @@
 <html>
-<head><title>Gallery Page</title>
+<head><title>Uploader Page</title>
 </head>
 <body><br/>
 Uploader PHP<br/>
