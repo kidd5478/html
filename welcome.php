@@ -1,14 +1,9 @@
 <?php
 session_start();
 
-$username = $_POST['user-id'];
-
-echo "Your username is: " . $username . "\n";
-
-$_SESSION['user-id'] = $_POST['user-id'];
-
-
-
+$email = $_POST['email'];
+echo "Your username is: " . $email . "\n";
+$_SESSION['user-id'] = $_POST['email'];
 
 ?>
 
