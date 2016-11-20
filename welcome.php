@@ -1,12 +1,12 @@
 <?php
 session_start();
-echo $_POST['email'] . "\n";
+echo $_POST['username'] . "\n";
 
-$email = $_POST['email'];
+$username = $_POST['username'];
 
-echo "Your email is: " . $email . "\n";
+echo "Your username is: " . $username . "\n";
 
-$_SESSION['email'] = $_POST['email'];
+$_SESSION['username'] = $_POST['username'];
 
 
 
@@ -14,7 +14,7 @@ $_SESSION['email'] = $_POST['email'];
 ?>
 
 <html>
-<head><title>Hello app</title>
+<head><title>Welcome Page</title>
 </head>
 <body>
 <hr />
