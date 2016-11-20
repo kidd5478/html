@@ -3,9 +3,9 @@
 session_start();
 ?>
 <html>
-<head><title>Best Page Ever</title></head>
+<head><title>Upload Page</title></head>
 <body>
-<h1> World</h1>
+<h1> Upload</h1>
 
 
 <form enctype="multipart/form-data" action="uploader.php" method="POST">
