@@ -1,11 +1,11 @@
 <?php
 session_start();
 
-$username = $_POST['username'];
+$username = $_POST['user-id'];
 
 echo "Your username is: " . $username . "\n";
 
-$_SESSION['username'] = $_POST['username'];
+$_SESSION['user-id'] = $_POST['user-id'];
 
 
 
