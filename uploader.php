@@ -22,8 +22,8 @@ $s3 = new Aws\S3\S3Client([
 
 
 // have to hard code this here because index.php doesn't exist
-$_SESSION['user-id'] = "mkidd";
-echo "\n" . $_SESSION['user-id'] ."\n";
+$_SESSION['email'] = "mkidd@iit.edu";
+echo "\n" . $_SESSION['email'] ."\n";
 
 // Retrieve the POSTED file information (location, name, etc, etc)
 
@@ -67,7 +67,7 @@ $rdsresult = $rdsclient->describeDBInstances([
 $endpoint = $rdsresult['DBInstances'][0]['Endpoint']['Address'];
 echo $endpoint . "\n";
 
-$link = mysqli_connect($endpoint,"myawsuser","myuserpassword","controller") or die("Error " . mysqli_error($link));
+$link = mysqli_connect($endpoint,"masterawsuser","masteruserpassword","controller") or die("Error " . mysqli_error($link));
 
 /* check connection */
 if (mysqli_connect_errno()) {
@@ -79,17 +79,17 @@ if (mysqli_connect_errno()) {
 
 // code to insert new record
 /* Prepared statement, stage 1: prepare */
-if (!($stmt = $link->prepare("INSERT INTO items(id, username, phone, filename, s3rawurl, s3finishedurl, status, reciept) VALUES (NULL,?,?,?,?,?,?,?)"))) {
+if (!($stmt = $link->prepare("INSERT INTO items(id, email, phone, filename, s3rawurl, s3finishedurl, status, receipt) VALUES (NULL,?,?,?,?,?,?,?)"))) {
     echo "Prepare failed: (" . $stmt->errno . ") " . $stmt->error;
 }
-$username=$_SESSION['user-id'];
+$email=$_SESSION['email'];
 $phone='1234567';
 $finishedurl=' ';
 $status=0;
 $issubscribed=0;
 $receipt=md5($url);
 // prepared statements will not accept literals (pass by reference) in bind_params, you need to declare variables
-$stmt->bind_param("ssssii",$username,$phone,$s3rawurl,$s3finsihedurl,$status,$reciept);
+$stmt->bind_param("ssssii",$email,$phone,$s3rawurl,$s3finsihedurl,$status,$receipt);
 
 if (!$stmt->execute()) {
     echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
