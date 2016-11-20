@@ -15,4 +15,4 @@ $_SESSION['user-id'] = $_POST['email'];
 <a href="gallery.php"> Gallery </a> | <a href="upload.php"> Upload </a>
 
 </body></html>
-~
+
