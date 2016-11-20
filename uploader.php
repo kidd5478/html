@@ -58,6 +58,29 @@ $rdsclient = new Aws\Rds\RdsClient([
     'version'           => 'latest'
 ]);
 
+$receipt=md5($url);
+echo "\n";
+echo $receipt;
+echo "\n";
+use Aws\Sqs\SqsClient;
+
+$client = SqsClient::factory(array(
+    'region'  => 'us-west-2'
+));
+$result = $client->getQueueUrl(array(
+    // QueueName is required
+    'QueueName' => 'inclass2',
+  //  'QueueOwnerAWSAccountId' => 'mkidd@iit.edu',
+));
+
+echo $result['QueueUrl'];
+
+$client->sendMessage(array(
+    'QueueUrl'    => $cqueue,
+    'MessageBody' => $receipt,
+));
+
+echo "\n";
 
 $rdsresult = $rdsclient->describeDBInstances([
     'DBInstanceIdentifier' => 'mydbinstancefixed'
@@ -114,13 +137,6 @@ while ($row = $res->fetch_assoc()) {
 
 
 $link->close();
-
-
-
-
-// PUT MD5 hash of raw URL to SQS QUEUE
-
-
 
 
 ?>
