@@ -16,10 +16,10 @@ $_SESSION['receipt'] = md5($username);
 Gallery PHP
 <a href="gallery.php"> Gallery </a> <a href="upload.php"> Upload </a>
 
-  <img style="-webkit-user-select: none; cursor: zoom-in;" src="https://s3-us-west-2.amazonaws.com/raw-mak/img/Knuth-bw.jpg.png" width="200" height="200">
+  <img style="-webkit-user-select: none; cursor: zoom-in;" src="https://s3-us-west-2.amazonaws.com/raw-mak/Knuth-bw.jpg" width="200" height="200">
   <br/ >
-  <img style="-webkit-user-select: none; cursor: zoom-in;" src="https://s3-us-west-2.amazonaws.com/raw-mak/img/eartrumpet-bw.png" width="200" height="200">
+  <img style="-webkit-user-select: none; cursor: zoom-in;" src="https://s3-us-west-2.amazonaws.com/raw-mak/eartrumpet-bw.png" width="200" height="200">
   <br/ >
-  <img style="-webkit-user-select: none; cursor: zoom-in;" src="https://s3-us-west-2.amazonaws.com/raw-mak/img/mountain-bw.jpg" width="200" height="200">
+  <img style="-webkit-user-select: none; cursor: zoom-in;" src="https://s3-us-west-2.amazonaws.com/raw-mak/mountain-bw.jpg" width="200" height="200">
 
 </body></html>
