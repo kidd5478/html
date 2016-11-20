@@ -67,7 +67,7 @@ $rdsresult = $rdsclient->describeDBInstances([
 $endpoint = $rdsresult['DBInstances'][0]['Endpoint']['Address'];
 echo $endpoint . "\n";
 
-$link = mysqli_connect($endpoint,"myawsuser","myuserpassword","mydbinstancefixed") or die("Error " . mysqli_error($link));
+$link = mysqli_connect($endpoint,"myawsuser","myuserpassword","controller") or die("Error " . mysqli_error($link));
 
 /* check connection */
 if (mysqli_connect_errno()) {
