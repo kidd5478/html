@@ -61,7 +61,7 @@ if (mysqli_connect_errno()) {
 // code to insert new record
 /* Prepared statement, stage 1: prepare */
 if (!($stmt = $link->prepare("INSERT INTO items (id, email, phone, s3rawurl, s3finishedurl, status,receipt) VALUES (NULL,?,?,?,?,?,?)"))) {
-    echo "1": (" . $stmt->errno . ") " . $stmt->error;
+    echo "1: (" . $stmt->errno . ") " . $stmt->error;
 }
 $id='0';
 $email=$_SESSION['email'];
